@@ -26,7 +26,8 @@ class PostController extends Controller
     {
         $post = new Post([
             'title' => $request->get('title'),
-            'content' => $request->get('content')
+            'image' => $request->get('image'),
+            'description' => $request->get('description')
         ]);
 
         $post->save();
@@ -43,9 +44,8 @@ class PostController extends Controller
     }
 
 
-    public function update(Request $request, Post $post)
-    {
-        $this->isUserPost($post);
+    public function update(Request $request, Post $post)    {
+        
         $post->update($request->all());
         return response([
             'data' => new PostResource($post)
